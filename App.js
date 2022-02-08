@@ -16,18 +16,18 @@ const styles = StyleSheet.create({
 
 const HomeScreen = ({navigation}) => { 
 	return ( 
-    	<View style={styles.homeScreen}> 
-        <Text>HomeScreen</Text>
-        <Button
-          title="Go to 장비대출목록"
-          onPress={ () => navigation.navigate('EquipLog')}
-        />
-        <Button
-          title="Go to STAFF 회의록"
-          onPress={ () => navigation.navigate('StaffMeeting')}
-        />
-      </View> 
-    ) 
+    <View style={styles.homeScreen}> 
+      <Text>HomeScreen</Text>
+      <Button
+        title="Go to 장비대출목록"
+        onPress={ () => navigation.navigate('EquipLog')}
+      />
+      <Button
+        title="Go to STAFF 회의록"
+        onPress={ () => navigation.navigate('StaffMeeting')}
+      />
+    </View> 
+  ) 
 } 
 
 // 앱이 각 화면이 전환될 수 있는 기본 틀을 제공한다. 
@@ -41,8 +41,8 @@ const App = () => {
         <Stack.Navigator> 
           {/* 해당스택에 들어갈 화면 요소를 넣어준다. */}
             <Stack.Screen name="Home" component={HomeScreen}/> 
-            <Stack.Screen name="EquipLog" component={EquipLog}/> 
-            <Stack.Screen name="StaffMeeting" component={StaffMeeting}/> 
+            <Stack.Screen name="EquipLog" component={EquipLog}  options={{ headerShown: false }}/> 
+            <Stack.Screen name="StaffMeeting" component={StaffMeeting} options={{ headerShown: false }}/> 
         </Stack.Navigator> 
     </NavigationContainer> 
   ) 
