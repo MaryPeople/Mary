@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const LogList = () => {
-  const state = [
+  const [state, setState] = useState([
     {
       text: '할일1',
       completed: false,
@@ -16,7 +16,7 @@ const LogList = () => {
       text: '할일3',
       completed: false,
     },
-  ]
+  ]);
 
   return (
       <View style={styles.container}>

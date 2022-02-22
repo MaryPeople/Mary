@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 
-const Adder = () => {
+const Adder = (props) => {
+  
+  const [state, setState] = useState({
+    newTodo: '',
+  })
+  
+  const addNewTodo = () => {
+    if(state.newTodo){
+      props.addTodo(state.newTodo);
+      setState({
+        newTodo: '',
+      })
+      console.log(state);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.input}> 
@@ -10,12 +25,14 @@ const Adder = () => {
           style={styles.inputText}
           placeholder='Enter new todo'
           autoCorrect={ false }
+          value={state.newTodo}
+          onChangeText={(newTodo) => setState({newTodo})}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPressOut={addNewTodo}>
           <Button style={styles.addBtn} icon="plus-circle" size={40} />
         </TouchableOpacity>
       </View>
-    </View>
+    </View>  
   )
 }
 
