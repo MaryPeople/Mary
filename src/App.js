@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import EquipLog from './src/pages/EquipLog';
-import StaffMeeting from './src/pages/StaffMeeting';
+import EquipLog from './pages/EquipLog';
+import StaffMeeting from './pages/StaffMeeting';
 
 const styles = StyleSheet.create({ 
 	homeScreen: { 
