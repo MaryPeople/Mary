@@ -31,7 +31,7 @@ const EquipLog = () => {
         장비대출목록
       </Text>
       <Adder addTodo={addTodo}/>
-      <LogList/>
+      <LogList todos={state.todos}/>
     </View>
   )
 };

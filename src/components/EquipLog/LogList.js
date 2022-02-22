@@ -2,44 +2,29 @@ import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const LogList = () => {
-  const [state, setState] = useState([
-    {
-      text: '할일1',
-      completed: false,
-    },
-    {
-      text: '할일2',
-      completed: true,
-    },
-    {
-      text: '할일3',
-      completed: false,
-    },
-  ]);
-
+const LogList = (props) => {
   return (
-      <View style={styles.container}>
-        {
-          state.map(data => (
-            <View style={styles.todo}>
-              <View style={styles.todoText}>
-                <TouchableOpacity style={styles.todoCheckbox}>
-                  {
-                    data.completed
-                    ? <Button size={40} icon='checkbox-marked-circle-outline' />
-                    : <Button size={40} icon='checkbox-blank-circle-outline' />
-                  }
-                </TouchableOpacity>
-                <Text>{data.text}</Text>
-              </View>
-              <TouchableOpacity>
-                <Button style={styles.todoDelBtn} size={40} icon='delete-outline' />
+    <View style={styles.container}>
+      {
+        props.todos.map(todo => (
+          <View style={styles.todo} key={todo.id}>
+            <View style={styles.todoText}>
+              <TouchableOpacity style={styles.todoCheckbox}>
+                {
+                  todo.completed
+                  ? <Button size={40} icon='checkbox-marked-circle-outline' />
+                  : <Button size={40} icon='checkbox-blank-circle-outline' />
+                }
               </TouchableOpacity>
+              <Text>{todo.text}</Text>
             </View>
-          ))
-        }
-      </View>
+            <TouchableOpacity>
+              <Button style={styles.todoDelBtn} size={40} icon='delete-outline' />
+            </TouchableOpacity>
+          </View>
+        ))
+      }
+    </View>
   )
 }
 
