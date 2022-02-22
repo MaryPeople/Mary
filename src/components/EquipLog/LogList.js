@@ -9,16 +9,22 @@ const LogList = (props) => {
         props.todos.map(todo => (
           <View style={styles.todo} key={todo.id}>
             <View style={styles.todoText}>
-              <TouchableOpacity style={styles.todoCheckbox}>
-                {
-                  todo.completed
-                  ? <Button size={40} icon='checkbox-marked-circle-outline' />
-                  : <Button size={40} icon='checkbox-blank-circle-outline' />
-                }
+              
+              <TouchableOpacity 
+                style={styles.todoCheckbox}
+                onPressOut={()=> props.checkTodo(todo.id)}
+              >
+                  {
+                    todo.completed
+                    ? <Button size={40} icon='checkbox-marked-circle-outline' />
+                    : <Button size={40} icon='checkbox-blank-circle-outline' />
+                  }
               </TouchableOpacity>
-              <Text>{todo.text}</Text>
+
+              <Text style={todo.completed? styles.todoCompleted: null}>{todo.text}</Text>
             </View>
-            <TouchableOpacity>
+            
+            <TouchableOpacity onPressOut={() => props.removeTodo(todo.id)}>
               <Button style={styles.todoDelBtn} size={40} icon='delete-outline' />
             </TouchableOpacity>
           </View>
@@ -53,6 +59,10 @@ const styles = StyleSheet.create({
     },
     todoDelBtn: {
       color: '#777'
+    },
+    todoCompleted: {
+      color: '#bbb',
+      textDecorationLine: 'line-through'
     }
 });
 

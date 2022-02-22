@@ -21,8 +21,30 @@ const EquipLog = () => {
         ...prevState.todos
       ]
     }))
+  }
 
-    console.log(state.todos);
+  const checkTodo = (id) => {
+    setState(preState =>{
+      const [todo] = preState.todos.filter(e => e.id===id)
+      todo.completed = !todo.completed;
+      return({
+        todos: [
+          ...preState.todos
+        ]
+      })
+    });
+  }
+
+  const removeTodo = (id) => {
+    setState(prevState => {
+      const index = prevState.todos.findIndex(e => e.id === id);
+      prevState.todos.splice(index, 1);
+      return ({
+        todos: [
+          ...prevState.todos
+        ]
+      });
+    });
   }
 
   return(
@@ -31,7 +53,7 @@ const EquipLog = () => {
         장비대출목록
       </Text>
       <Adder addTodo={addTodo}/>
-      <LogList todos={state.todos}/>
+      <LogList todos={state.todos} checkTodo={checkTodo} removeTodo={removeTodo}/>
     </View>
   )
 };
