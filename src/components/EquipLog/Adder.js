@@ -14,7 +14,6 @@ const Adder = (props) => {
       setState({
         newTodo: '',
       })
-      console.log(state);
     }
   }
 

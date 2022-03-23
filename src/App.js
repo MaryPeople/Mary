@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import EquipLog from './pages/EquipLog';
 import StaffMeeting from './pages/StaffMeeting';
+import HookFlow from './pages/HookFlow';
 
 const styles = StyleSheet.create({ 
 	homeScreen: { 
@@ -18,6 +19,10 @@ const HomeScreen = ({navigation}) => {
 	return ( 
     <View style={styles.homeScreen}> 
       <Text>HomeScreen</Text>
+      <Button
+        title="Go to HookFlow"
+        onPress={ () => navigation.navigate('HookFlow')}
+      />
       <Button
         title="Go to 장비대출목록"
         onPress={ () => navigation.navigate('EquipLog')}
@@ -41,7 +46,8 @@ const App = () => {
         <Stack.Navigator> 
           {/* 해당스택에 들어갈 화면 요소를 넣어준다. */}
             <Stack.Screen name="Home" component={HomeScreen}/> 
-            <Stack.Screen name="EquipLog" component={EquipLog}  options={{ headerShown: false }}/> 
+            <Stack.Screen name="HookFlow" component={HookFlow}  options={{ headerShown: false }}/>
+            <Stack.Screen name="EquipLog" component={EquipLog}  options={{ headerShown: false }}/>
             <Stack.Screen name="StaffMeeting" component={StaffMeeting} options={{ headerShown: false }}/> 
         </Stack.Navigator> 
     </NavigationContainer> 
