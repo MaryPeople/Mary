@@ -1,76 +1,54 @@
-import React, { useState } from 'react'; 
-import { View, Text, StyleSheet } from 'react-native'; 
-import Adder from '../components/EquipLog/Adder';
-import LogList from '../components/EquipLog/LogList';
+import React, { useState, useEffect } from 'react'
+import EquipAdder from '../components/EquipLog/EquipAdder';
+import { EquipProvider } from '../components/EquipLog/EquipContext';
+import EquipHeader from '../components/EquipLog/EquipHeader';
+import EquipItems from '../components/EquipLog/EquipItems';
+// import axios from 'axios';
 
-const EquipLog = () => {
-  
-  const [state, setState] = useState({
-    todos: []
-  })
-  
-  const addTodo = (todo) => {
-    const newTodo = {
-      id: Date.now(),
-      text: todo,
-      completed: false 
+export default function EquipLog() {
+  const [equips, setEquips] = useState([
+    {
+      eqid: '38884772723',
+      name: 'XLR',
+      cnt: 4,
+      desc: ''
+    },
+    {
+      eqid: '451182349823',
+      name: 'DMX',
+      cnt: 2,
+      desc: ''
+    },
+    {
+      eqid: '7272311111',
+      name: '인터콤',
+      cnt: 1,
+      desc: ''
     }
-    setState(prevState => ({
-      todos: [
-        newTodo,
-        ...prevState.todos
-      ]
-    }))
-  }
+  ]);
 
-  const checkTodo = (id) => {
-    setState(preState =>{
-      const [todo] = preState.todos.filter(e => e.id===id)
-      todo.completed = !todo.completed;
-      return({
-        todos: [
-          ...preState.todos
-        ]
-      })
-    });
-  }
+  // const fetchEquips = () => {
+  //   axios({
+  //     url: 'http://127.0.0.1:8000/equips',
+  //     method: 'get',
+  //   })
+  //   .then(function a(response) { 
+  //     console.log(response) 
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
+  
+  // useEffect(()=>{
+  //   fetchEquips();
+  // }, [])
 
-  const removeTodo = (id) => {
-    setState(prevState => {
-      const index = prevState.todos.findIndex(e => e.id === id);
-      prevState.todos.splice(index, 1);
-      return ({
-        todos: [
-          ...prevState.todos
-        ]
-      });
-    });
-  }
-
-  return(
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        장비대출목록
-      </Text>
-      <Adder addTodo={addTodo}/>
-      <LogList todos={state.todos} checkTodo={checkTodo} removeTodo={removeTodo}/>
-    </View>
+  return (
+    <EquipProvider value={[equips, setEquips]}>
+      <EquipHeader/>
+      <EquipAdder/>
+      <EquipItems/>
+    </EquipProvider>
   )
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    paddingTop: 50,
-    backgroundColor: "#EEE",
-  },
-  title: {
-    fontWeight: "800",
-    fontSize: 30, 
-    marginLeft: 20,
-    marginBottom: 20,
-  }
-});
-
-export default EquipLog;
+}

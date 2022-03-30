@@ -20,7 +20,7 @@ const HomeScreen = ({navigation}) => {
     <View style={styles.homeScreen}> 
       <Text>HomeScreen</Text>
       <Button
-        title="Go to HookFlow"
+        title="Go to HookFlow!!!"
         onPress={ () => navigation.navigate('HookFlow')}
       />
       <Button
