@@ -40,7 +40,7 @@ export default function EquipLog() {
   //   });
   // }
   
-  // useEffect(()=>{
+  // useEffect(()=>{ 
   //   fetchEquips();
   // }, [])
 

@@ -6,12 +6,12 @@ import { View, Text, TextInput, Button } from 'react-native';
 const Child = () => {
   console.log("   Child render Start");
   
-  const textRef = useRef();
   const [text, setText] = useState(() => {
     console.log("   Child useState");
     return "";
   });
-
+  const textRef = useRef(null);
+  
   useEffect(() => {
     console.log("   Child useEffect, no deps", textRef.current);
     textRef.current.focus();
